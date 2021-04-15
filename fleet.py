@@ -1,6 +1,6 @@
 from robot import Robot
 from weapon import Weapon
-from main import user_prompt
+from utils import user_prompt
 import random
 
 

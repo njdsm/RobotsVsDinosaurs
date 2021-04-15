@@ -1,5 +1,4 @@
-from main import user_prompt
-
+from utils import user_prompt
 
 class Battlefield:
     # Constructor and Member variables
