@@ -44,19 +44,29 @@ class Battlefield:
             else:
                 choice = int(self.show_dino_opponent_options())
                 self.dino_turn(choice)
+            # Computer Turn
             print(computer_banner + " turn!")
             if player == 1:
-                self.robo_turn(1)
-            else:
                 self.dino_turn(1)
-
+            else:
+                self.robo_turn(1)
+            # Check for dead
+            if self.herd.dinosaurs[0].health <= 0:
+                self.herd.dinosaurs.remove(self.herd.dinosaurs[0])
+            if self.fleet.robots[0].health <= 0:
+                self.fleet.robots.remove(self.fleet.robots[0])
             if len(self.herd.dinosaurs) < 1:
                 winner = "Robots Win!"
                 game_on = False
             if len(self.fleet.robots) < 1:
                 winner = "Dinosaurs Win!"
                 game_on = False
-
+            print(computer_banner + " turn!")
+            if player == 1:
+                self.dino_turn(1)
+            else:
+                self.robo_turn(1)
+        self.display_winner(winner)
 
     def display_welcome(self):
         choice = user_prompt("Welcome to Dinosaurs Vs Robots! Enter 1 to play as Dinosaurs and 2 to play as Robots. :", 2)
@@ -66,7 +76,7 @@ class Battlefield:
         pass
 
     def dino_turn(self, choice):
-        self.herd.dinosaurs[choice - 1].attack(self.fleet.Robot[0])
+        self.herd.dinosaurs[choice - 1].attack(self.fleet.robots[0])
 
     def robo_turn(self, choice):
         self.fleet.robots[choice - 1].attack(self.herd.dinosaurs[0])
@@ -101,6 +111,5 @@ class Battlefield:
             display(2, self.fleet, self.herd)
             return self.show_robo_opponent_options()
 
-    def display_winner(self):
-
-        pass
+    def display_winner(self, string):
+        print(string)
