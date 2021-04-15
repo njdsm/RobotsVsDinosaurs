@@ -1,5 +1,4 @@
-
-class BattleField:
+class Battlefield:
     # Constructor and Member variables
     def __init__(self):
         self.fleet = []
@@ -9,6 +8,7 @@ class BattleField:
         pass
 
     def display_welcome(self):
+        print("Welcome to the game. Would you like to be dinosaurs or robots?")
         pass
 
     def battle(self):
