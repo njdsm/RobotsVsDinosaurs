@@ -10,7 +10,7 @@ class Battlefield:
         pass
 
     def display_welcome(self):
-        choice = user_prompt("Welcome to Dinosaurs Vs Robots! Enter 1 to play as Dinosaurs and 2 to play as Robots", 2)
+        choice = user_prompt("Welcome to Dinosaurs Vs Robots! Enter 1 to play as Dinosaurs and 2 to play as Robots. :", 2)
         return int(choice)
         pass
 

@@ -5,4 +5,4 @@ def user_prompt(string, options):
             if options >= choice > 0:
                 return choice
         except:
-            print("Not one of your options.")
+            print("Not one of your options. :")
