@@ -1,4 +1,5 @@
 from dinosaur import Dinosaur
+import random
 
 
 class Herd:
@@ -12,7 +13,8 @@ class Herd:
         # Loop to create robot fleet
         i = 0
         while i < team_size:
-            dino_type = dinosaur_list[i]
+            x = random.randrange(0, 2)
+            dino_type = dinosaur_list[x]
             dinosaur = Dinosaur(dino_type)
             dinosaurs.append(dinosaur)
             i += 1

@@ -10,7 +10,7 @@ class Fleet:
         self.robots = []
 
     def create_fleet(self, team_size, player):
-        robot_list = ["bot1", "bot2", "bot3"]
+        robot_list = ["bot1", "bot2", "bot3", "bot4", "bot5", "bot6", "bot7", "bot8", "bot9", "bot10"]
         robots = []
         list_of_weapons = "\n\n1. Laser [4 - 12 damage]\n2. Blaster [6 - 10 damage]\n3. FlameThrower [1 - 16 damage]\n\n"
         # Loop to create robot fleet

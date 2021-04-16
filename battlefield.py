@@ -12,7 +12,7 @@ class Battlefield:
     def run_game(self):
         fleet = Fleet()
         herd = Herd()
-        name = input("What is your Name? :")
+        #name = input("What is your Name? :")
         player = self.display_welcome()
         # if player == 1:
         #     player_banner = f"{name}'s Robots"
