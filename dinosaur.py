@@ -8,7 +8,10 @@ class Dinosaur:
 
     def attack(self, robot, attack_type):
         damage = 0
-        if attack_type == 1:
+        if self.energy == 0:
+            print("Out of energy. Instead of attacking it will rest. Gain 30 energy")
+            self.energy = self.energy + 30
+        elif attack_type == 1:
             damage = self.attack_power * 1.5
             robot.health = robot.health - damage
             self.energy = self.energy - 20

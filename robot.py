@@ -7,6 +7,10 @@ class Robot:
         self.weapon = None
 
     def attack(self, dinosaur):
-        dinosaur.health = dinosaur.health - self.weapon.attack_power
-        self.power_level = self.power_level - 10
-        print(self.name + " attacked " + dinosaur.type + " and did " + str(self.weapon.attack_power) + " damage!")
+        if self.power_level == 0:
+            print(self.name + " is out of power. Instead of attacking it will rest. Gain 30 power")
+            self.power_level = self.power_level + 30
+        else:
+            dinosaur.health = dinosaur.health - self.weapon.attack_power
+            self.power_level = self.power_level - 10
+            print(self.name + " attacked " + dinosaur.type + " and did " + str(self.weapon.attack_power) + " damage!")
