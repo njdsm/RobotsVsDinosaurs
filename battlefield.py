@@ -52,8 +52,10 @@ class Battlefield:
                 self.robo_turn(1)
             # Check for dead
             if self.herd.dinosaurs[0].health <= 0:
+                print(f"{self.herd.dinosaurs[0].type} has died!")
                 self.herd.dinosaurs.remove(self.herd.dinosaurs[0])
             if self.fleet.robots[0].health <= 0:
+                print(f"{self.fleet.robots[0].name} has died!")
                 self.fleet.robots.remove(self.fleet.robots[0])
             if len(self.herd.dinosaurs) < 1:
                 winner = "Robots Win!"
