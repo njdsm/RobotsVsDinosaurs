@@ -34,20 +34,21 @@ class Battlefield:
         game_on = True
         while game_on:
             choice = None
-            print("Your turn!")
+            print("Your turn!\n")
             if player == 1:
                 choice = self.show_robo_opponent_options()
                 if choice != "skip":
                     self.robo_turn(int(choice))
                 # Computer Turn
-                print(f"Computer's turn!\n{self.herd.dinosaurs[0].type} attacked {self.fleet.robots[0].name}!")
-                self.dino_turn(1)
+                print(f"Computer's turn!\n")
+                self.dino_turn(1, 2)
             else:
                 choice = self.show_dino_opponent_options()
                 if choice != "skip":
-                    self.dino_turn(int(choice))
+                    attack_type = user_prompt("What type of attack?\n1: Slam (more damage, higher energy cost)\n2: Bite\n:", 2)
+                    self.dino_turn(int(choice), int(attack_type))
                 # Computer Turn
-                print(f"Computer's turn!\n{self.fleet.robots[0].name} attacked {self.herd.dinosaurs[0].type}!")
+                print(f"Computer's turn!\n")
                 self.robo_turn(1)
             # Check for dead
             if self.herd.dinosaurs[0].health <= 0:
@@ -69,8 +70,8 @@ class Battlefield:
     def battle(self):
         pass
 
-    def dino_turn(self, choice):
-        self.herd.dinosaurs[choice - 1].attack(self.fleet.robots[0])
+    def dino_turn(self, choice, attack_type):
+        self.herd.dinosaurs[choice - 1].attack(self.fleet.robots[0], attack_type)
 
     def robo_turn(self, choice):
         self.fleet.robots[choice - 1].attack(self.herd.dinosaurs[0])
@@ -83,16 +84,15 @@ class Battlefield:
             i = i + 1
         print(f"{len(self.herd.dinosaurs) + 1}: Charge Energy")
         print(f"{len(self.herd.dinosaurs) + 2}: Display units")
-        choice = user_prompt("", len(self.herd.dinosaurs) + 1)
-        if int(choice) != len(self.herd.dinosaurs) + 2:
-            return choice
+        choice = user_prompt("", len(self.herd.dinosaurs) + 2)
+        if int(choice) == len(self.herd.dinosaurs) + 2:
+            display(self.fleet, self.herd)
+            return self.show_dino_opponent_options()
         elif int(choice) == len(self.herd.dinosaurs) + 1:
             self.herd.dinosaurs[0].energy = self.herd.dinosaurs[0].energy + 10
             return "skip"
         else:
-            display("Robots", self.fleet, self.herd)
-            display("Dinosaurs", self.fleet, self.herd)
-            return self.show_robo_opponent_options()
+            return choice
 
     def show_robo_opponent_options(self):
         print("What would you like to do?\n")

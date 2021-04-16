@@ -6,6 +6,15 @@ class Dinosaur:
         self.attack_power = 10
         self.health = 50
 
-    def attack(self, robot):
-        robot.health = robot.health - self.attack_power
-        self.energy = self.energy - 10
+    def attack(self, robot, attack_type):
+        damage = 0
+        if attack_type == 1:
+            damage = self.attack_power * 1.5
+            robot.health = robot.health - damage
+            self.energy = self.energy - 20
+            print(self.type + " attacked " + robot.name + " and did " + str(damage) + " damage!\n")
+        elif attack_type == 2:
+            robot.health = robot.health - self.attack_power
+            self.energy = self.energy - 10
+            print(self.type + " attacked " + robot.name + " and did " + str(self.attack_power) + " damage!\n")
+
