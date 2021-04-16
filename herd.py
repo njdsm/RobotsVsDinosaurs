@@ -7,11 +7,12 @@ class Herd:
         self.dinosaurs = []
 
     def create_herd(self, team_size):
+        dinosaur_list = ["T-Rex", "Raptor", "Triceratops"]
         dinosaurs = []
         # Loop to create robot fleet
-        i = 1
-        while i < team_size + 1:
-            dino_type = input(f"What type of dino is dino {i}?")
+        i = 0
+        while i < team_size:
+            dino_type = dinosaur_list[i]
             dinosaur = Dinosaur(dino_type)
             dinosaurs.append(dinosaur)
             i += 1

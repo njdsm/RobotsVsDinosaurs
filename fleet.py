@@ -10,15 +10,16 @@ class Fleet:
         self.robots = []
 
     def create_fleet(self, team_size):
+        robot_list = ["bot1", "bot2", "bot3"]
         robots = []
         list_of_weapons = "\n\n1. Laser [4 - 12 damage]\n2. Blaster [6 - 10 damage]\n3. FlameThrower [1 - 16 damage]\n\n"
         # Loop to create robot fleet
-        i = 1
-        while i < team_size + 1:
-            name = input(f"What is robot {i}'s Name? :")
+        i = 0
+        while i < team_size:
+            name = robot_list[i]
             robot = Robot(name)
             print(list_of_weapons)
-            weapon_type = user_prompt(f"What is robot {i}'s Weapon?\n Select by entering 1-3. :", 3)
+            weapon_type = user_prompt(f"What is robot {i + 1}'s Weapon?\n Select by entering 1-3. :", 3)
             if weapon_type == 1:
                 weapon_damage = random.randrange(4, 12)
                 weapon_type = "Laser"
