@@ -12,8 +12,8 @@ class Battlefield:
     def run_game(self):
         fleet = Fleet()
         herd = Herd()
-        #name = input("What is your Name? :")
-        # player = self.display_welcome()
+        name = input("What is your Name? :")
+        player = self.display_welcome()
         # if player == 1:
         #     player_banner = f"{name}'s Robots"
         #     computer_banner = "Computer's Dinosaurs"
@@ -22,9 +22,9 @@ class Battlefield:
         #     player_banner = "Player One's Dinosaurs"
         #     computer_banner = "Computer's Robots"
         #     computer = 1
-        #team_size = user_prompt("How many on each team? Less than 10 please. :", 10)
-        herd.create_herd(3)
-        fleet.create_fleet(3)
+        team_size = user_prompt("How many on each team? Less than 10 please. :", 10)
+        herd.create_herd(team_size)
+        fleet.create_fleet(team_size, player)
         self.fleet = fleet
         self.herd = herd
         print("\n" * 10)
@@ -35,12 +35,20 @@ class Battlefield:
         while game_on:
             choice = None
             print("Your turn!")
-            choice = self.show_robo_opponent_options()
-            if choice != "skip":
-                self.robo_turn(int(choice))
-            # Computer Turn
-            print(f"Computer's turn!\n{self.herd.dinosaurs[0].type} attacked {self.fleet.robots[0].name}!")
-            self.dino_turn(1)
+            if player == 1:
+                choice = self.show_robo_opponent_options()
+                if choice != "skip":
+                    self.robo_turn(int(choice))
+                # Computer Turn
+                print(f"Computer's turn!\n{self.herd.dinosaurs[0].type} attacked {self.fleet.robots[0].name}!")
+                self.dino_turn(1)
+            else:
+                choice = self.show_dino_opponent_options()
+                if choice != "skip":
+                    self.dino_turn(int(choice))
+                # Computer Turn
+                print(f"Computer's turn!\n{self.fleet.robots[0].name} attacked {self.herd.dinosaurs[0].type}!")
+                self.robo_turn(1)
             # Check for dead
             if self.herd.dinosaurs[0].health <= 0:
                 self.herd.dinosaurs.remove(self.herd.dinosaurs[0])
@@ -55,7 +63,7 @@ class Battlefield:
         self.display_winner(winner)
 
     def display_welcome(self):
-        choice = user_prompt("Welcome to Dinosaurs Vs Robots! Enter 1 to play as Dinosaurs and 2 to play as Robots. :", 2)
+        choice = user_prompt("Welcome to Dinosaurs Vs Robots!\nTo play as Robots enter 1\nTo play as Dinosaurs enter 2\n:", 2)
         return int(choice)
 
     def battle(self):
