@@ -12,16 +12,7 @@ class Battlefield:
     def run_game(self):
         fleet = Fleet()
         herd = Herd()
-        #name = input("What is your Name? :")
         player = self.display_welcome()
-        # if player == 1:
-        #     player_banner = f"{name}'s Robots"
-        #     computer_banner = "Computer's Dinosaurs"
-        #     computer = 2
-        # else:
-        #     player_banner = "Player One's Dinosaurs"
-        #     computer_banner = "Computer's Robots"
-        #     computer = 1
         team_size = user_prompt("How many on each team? Less than 10 please. :", 10)
         herd.create_herd(team_size)
         fleet.create_fleet(team_size, player)
@@ -69,9 +60,6 @@ class Battlefield:
         choice = user_prompt("Welcome to Dinosaurs Vs Robots!\nTo play as Robots enter 1\nTo play as Dinosaurs enter 2\n:", 2)
         return int(choice)
 
-    def battle(self):
-        pass
-
     def dino_turn(self, choice, attack_type):
         self.herd.dinosaurs[choice - 1].attack(self.fleet.robots[0], attack_type)
 
@@ -112,7 +100,6 @@ class Battlefield:
         elif int(choice) == len(self.fleet.robots) + 1:
             for bot in self.fleet.robots:
                 bot.power_level = bot.power_level + 10
-            #self.fleet.robots[0].power_level = self.fleet.robots[0].power_level + 10
             return "skip"
         else:
             return choice
